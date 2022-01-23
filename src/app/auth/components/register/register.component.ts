@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { select, Store } from '@ngrx/store';
 
-import { registerAction } from '../../store/actions';
+import { registerAction } from '../../store/actions/register.action';
 import { AppStateInterface } from '../../../shared/types/appState.interface';
 import { Observable } from 'rxjs';
 import { isSubmittingSelector } from '../../store/selectors';
