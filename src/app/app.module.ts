@@ -9,6 +9,7 @@ import { AppComponent } from './app.component';
 import { environment } from 'src/environments/environment';
 import { HttpClientModule } from '@angular/common/http';
 import { EffectsModule } from '@ngrx/effects';
+import { TopBarModule } from './shared/modules/topBar/topBar.module';
 
 @NgModule({
   imports: [
@@ -22,6 +23,7 @@ import { EffectsModule } from '@ngrx/effects';
       maxAge: 25,
       logOnly: environment.production,
     }),
+    TopBarModule,
   ],
   providers: [],
   declarations: [AppComponent],
