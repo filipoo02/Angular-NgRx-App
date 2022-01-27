@@ -89,6 +89,7 @@ const authReducer = createReducer(
       ...state,
       currentUser: action.currentUser,
       isLoading: false,
+      isLoggedIn: true,
     })
   ),
   on(
