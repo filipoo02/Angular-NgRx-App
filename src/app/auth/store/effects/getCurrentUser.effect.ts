@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { createEffect, ofType } from '@ngrx/effects';
+import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { Store } from '@ngrx/store';
 import { catchError, map, of, switchMap } from 'rxjs';
 import { PersistanceService } from 'src/app/shared/services/persistance.service';
@@ -15,7 +15,7 @@ import {
 @Injectable()
 export class GetCurrentUserEffect {
   getCurrentUser$ = createEffect(() =>
-    this.store.pipe(
+    this.action$.pipe(
       ofType(getCurrentUserAction),
       switchMap(() => {
         const token = this.persistanceService.get('accessToken');
@@ -33,7 +33,7 @@ export class GetCurrentUserEffect {
   );
 
   constructor(
-    private store: Store,
+    private action$: Actions,
     private authService: AuthService,
     private persistanceService: PersistanceService
   ) {}

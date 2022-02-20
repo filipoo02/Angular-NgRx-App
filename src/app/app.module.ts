@@ -2,16 +2,20 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { EffectsModule } from '@ngrx/effects';
+import { routerReducer, StoreRouterConnectingModule } from '@ngrx/router-store';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AuthModule } from './auth/auth.module';
 import { AppComponent } from './app.component';
 import { environment } from 'src/environments/environment';
-import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
-import { EffectsModule } from '@ngrx/effects';
 import { TopBarModule } from './shared/modules/topBar/topBar.module';
 import { PersistanceService } from './shared/services/persistance.service';
 import { AuthInterceptorService } from './shared/services/authInterceptor.service';
+import { GlobalFeedModule } from './globalFeed/globalFeed.module';
+import { YourFeedModule } from './yourFeed/yourFeed.module';
+import { TagFeedModule } from './tagFeed/tagFeed.module';
 
 @NgModule({
   imports: [
@@ -19,13 +23,17 @@ import { AuthInterceptorService } from './shared/services/authInterceptor.servic
     BrowserModule,
     AppRoutingModule,
     AuthModule,
-    StoreModule.forRoot({}),
+    StoreModule.forRoot({ router: routerReducer }),
     EffectsModule.forRoot([]),
     StoreDevtoolsModule.instrument({
       maxAge: 25,
       logOnly: environment.production,
     }),
     TopBarModule,
+    GlobalFeedModule,
+    YourFeedModule,
+    TagFeedModule,
+    StoreRouterConnectingModule.forRoot(),
   ],
   providers: [
     PersistanceService,
